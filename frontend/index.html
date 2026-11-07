@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7fb">
+    <title>RH CONNECT | Portal Corporativo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.468.0/lucide.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="toast-region" class="toast-region" aria-live="polite"></div>
+
+<main id="auth-screen" class="auth-screen">
+    <section class="auth-brand-panel">
+        <div class="brand-lockup brand-lockup-light">
+            <div class="brand-symbol">RC</div>
+            <div><strong>RH CONNECT</strong><span>GENTE QUE CONECTA RESULTADOS</span></div>
+        </div>
+        <div class="auth-brand-copy">
+            <span class="eyebrow">PORTAL CORPORATIVO</span>
+            <h1>Conexões que<br><em>transformam</em><br>o trabalho.</h1>
+            <p>Um espaço simples, humano e inteligente para cuidar de quem faz tudo acontecer.</p>
+        </div>
+        <div class="auth-panel-footer"><span class="pulse-dot"></span> Pessoas no centro. Sempre.</div>
+        <div class="orb orb-one"></div><div class="orb orb-two"></div>
+    </section>
+    <section class="auth-form-panel">
+        <div class="auth-topline">
+            <span class="muted-label">BEM-VINDO(A) DE VOLTA</span>
+            <button class="icon-button theme-toggle" aria-label="Alternar tema" data-theme-toggle>◐</button>
+        </div>
+        <div class="auth-card">
+            <div class="mobile-brand brand-lockup">
+                <div class="brand-symbol">RC</div><div><strong>RH CONNECT</strong><span>PORTAL CORPORATIVO</span></div>
+            </div>
+            <div class="auth-heading">
+                <span class="eyebrow">SEU ESPAÇO DE TRABALHO</span>
+                <h2 id="auth-title">Acesse sua conta</h2>
+                <p id="auth-subtitle">Entre com suas credenciais para continuar.</p>
+            </div>
+            <form id="login-form" class="form-stack">
+                <label class="field-label">E-mail corporativo
+                    <input id="login-email" type="email" placeholder="voce@empresa.com.br" autocomplete="username" required>
+                </label>
+                <label class="field-label">Senha
+                    <span class="password-wrap"><input id="login-password" type="password" placeholder="Digite sua senha" autocomplete="current-password" required><button type="button" class="password-toggle" aria-label="Mostrar senha">◉</button></span>
+                </label>
+                <div class="form-meta"><label class="check-label"><input type="checkbox" checked> Manter conectado</label><button type="button" class="text-button" id="forgot-link">Esqueci minha senha</button></div>
+                <button class="primary-button full-button" type="submit">Entrar no portal <span>→</span></button>
+                <div class="form-divider"><span>ou</span></div>
+                <button class="secondary-button full-button" type="button" id="register-link">Solicitar cadastro de funcionário</button>
+            </form>
+            <div class="demo-access">
+                <div class="demo-title"><span class="demo-spark">✦</span><strong>Acesso para demonstração</strong></div>
+                <p>Experimente os diferentes níveis de acesso usando uma das contas abaixo.</p>
+                <div class="demo-accounts">
+                    <button type="button" class="demo-account" data-demo="colaborador"><span class="avatar avatar-blue">MC</span><span><b>Colaborador</b><small>maria@rhconnect.demo</small></span><span class="demo-arrow">↗</span></button>
+                    <button type="button" class="demo-account" data-demo="rh"><span class="avatar avatar-violet">AF</span><span><b>Equipe de RH</b><small>ana@rhconnect.demo</small></span><span class="demo-arrow">↗</span></button>
+                    <button type="button" class="demo-account" data-demo="admin"><span class="avatar avatar-green">RC</span><span><b>Administrador</b><small>admin@rhconnect.demo</small></span><span class="demo-arrow">↗</span></button>
+                </div>
+                <small class="demo-password">Senha demonstrativa para todas as contas: <b>123456</b></small>
+            </div>
+        </div>
+        <p class="auth-legal">© 2026 RH CONNECT</p>
+    </section>
+</main>
+
+<main id="app-screen" class="app-screen hidden">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand brand-lockup">
+            <div class="brand-symbol">RC</div><div><strong>RH CONNECT</strong><span>PEOPLE EXPERIENCE</span></div>
+        </div>
+        <div class="workspace-label">ESPAÇO DE TRABALHO</div>
+        <nav id="main-nav" class="main-nav"></nav>
+        <div class="sidebar-bottom">
+            <div class="help-card"><div class="help-icon">✳</div><b>Precisa de ajuda?</b><p>Estamos aqui para apoiar você.</p><button type="button" data-module="solicitacoes">Acessar suporte <span>→</span></button></div>
+            <button class="profile-button" id="profile-menu">
+                <span class="avatar avatar-blue" id="profile-avatar">MC</span><span class="profile-info"><b id="profile-name">Maria Costa</b><small id="profile-role">Colaboradora</small></span><span class="profile-more">···</span>
+            </button>
+        </div>
+    </aside>
+
+    <section class="main-area">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="icon-button mobile-menu" id="mobile-menu" aria-label="Abrir menu">☰</button>
+                <div class="breadcrumb"><span>RH CONNECT</span><b>/</b><strong id="breadcrumb-current">Meu painel</strong></div>
+            </div>
+            <div class="topbar-actions">
+                <div class="search-box"><span>⌕</span><input id="global-search" type="search" placeholder="Buscar no portal..."><kbd>⌘ K</kbd></div>
+                <button class="icon-button theme-toggle" aria-label="Alternar tema" data-theme-toggle>◐</button>
+                <button class="icon-button notification-button" id="notifications-button" aria-label="Notificações">♧<i></i></button>
+                <div class="topbar-avatar avatar avatar-blue" id="topbar-avatar">MC</div>
+            </div>
+        </header>
+        <div class="content-wrap">
+            <div id="page-content" class="page-content"></div>
+            <footer class="app-footer"><span>© 2026 RH CONNECT</span><span>Feito para conectar pessoas <b>♥</b></span></footer>
+        </div>
+    </section>
+</main>
+
+<div id="modal-root"></div>
+<script src="js/mock-data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
