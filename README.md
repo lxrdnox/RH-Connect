@@ -10,7 +10,7 @@ Status do projeto: versão demonstrativa em desenvolvimento. Alguns módulos e i
 
 
 **Alunos:**
-Rodrigo de Souza Elias Rathge Ferraro
-Kauã Santos de Araujo
-Brennan de Sousa Xaxa
-Samuel Rick de Oliveira Monteiro
+Rodrigo de Souza Elias Rathge Ferraro |
+Kauã Santos de Araujo |
+Brennan de Sousa Xaxa |
+Samuel Rick de Oliveira Monteiro |
