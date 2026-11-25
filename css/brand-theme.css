@@ -83,3 +83,9 @@
 @media(prefers-reduced-motion:reduce){
   .auth-brand-panel,.primary-button,.small-button,.nav-item{transition:none!important}
 }
+
+/* Navegação lateral: rolagem discreta, sem barras visíveis */
+.sidebar,.main-nav{scrollbar-width:none;-ms-overflow-style:none;overflow-x:hidden}
+.sidebar::-webkit-scrollbar,.main-nav::-webkit-scrollbar{display:none;width:0;height:0}
+.main-nav{overflow-y:auto;min-width:0}
+.nav-item{max-width:100%;white-space:normal;text-align:left}
