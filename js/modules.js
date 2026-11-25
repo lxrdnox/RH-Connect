@@ -85,7 +85,13 @@
   }
   function openForm(title,description,fields,onSave){
     const root=document.querySelector("#modal-root");
-    const controls=fields.map(f=>'<label class="field-label">'+f.label+(f.type==="select"?'<select name="'+f.name+'" '+(f.required===false?"":"required")+'>'+f.options.map(o=>'<option value="'+esc(o.value)+'">'+esc(o.label)+'</option>').join("")+'</select>':f.type==="textarea"?'<textarea name="'+f.name+'" rows="4" maxlength="1200" '+(f.required===false?"":"required")+'></textarea>':'<input name="'+f.name+'" type="'+(f.type||"text")+'" '+(f.step?'step="'+f.step+'"':'')+' '+(f.min!==undefined?'min="'+f.min+'"':'')+' '+(f.required===false?"":"required")+' '+(f.maxlength?'maxlength="'+f.maxlength+'"':'')+'></label>').join("");
+    const controls=fields.map(f=>{
+      let input="";
+      if(f.type==="select") input='<select name="'+f.name+'" '+(f.required===false?"":"required")+'>'+f.options.map(o=>'<option value="'+esc(o.value)+'">'+esc(o.label)+'</option>').join("")+'</select>';
+      else if(f.type==="textarea") input='<textarea name="'+f.name+'" rows="4" maxlength="1200" '+(f.required===false?"":"required")+'></textarea>';
+      else input='<input name="'+f.name+'" type="'+(f.type||"text")+'" '+(f.step?'step="'+f.step+'"':'')+' '+(f.min!==undefined?'min="'+f.min+'"':'')+' '+(f.required===false?"":"required")+' '+(f.maxlength?'maxlength="'+f.maxlength+'"':'')+'>';
+      return '<label class="field-label">'+f.label+input+'</label>';
+    }).join("");
     root.innerHTML='<div class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true"><div class="modal-header"><div><h2>'+title+'</h2><p>'+description+'</p></div><button class="icon-button" type="button" data-rhm-close>×</button></div><form id="rhm-form" class="modal-form">'+controls+'</form><div class="modal-actions"><button class="small-button" type="button" data-rhm-close>Cancelar</button><button class="small-button primary" type="submit" form="rhm-form">Salvar</button></div></section></div>';
     document.body.classList.add("modal-open");
     const close=()=>{root.innerHTML="";document.body.classList.remove("modal-open")};
