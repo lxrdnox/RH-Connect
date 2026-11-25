@@ -1,0 +1,85 @@
+/* RH CONNECT — identidade cromática oficial baseada no logotipo */
+:root{
+  --bg:#F3F7F8;
+  --surface:#FFFFFF;
+  --surface-2:#F7FAFA;
+  --surface-3:#EAF1F2;
+  --text:#102536;
+  --muted:#637783;
+  --line:#DCE7E9;
+  --primary:#008F8C;
+  --primary-dark:#007774;
+  --primary-soft:#E3F4F2;
+  --green:#0B927B;
+  --green-soft:#E3F5EF;
+  --orange:#C8873A;
+  --orange-soft:#FFF3E4;
+  --red:#D45F69;
+  --shadow:0 16px 45px rgba(0,42,55,.08);
+  color-scheme:light;
+}
+[data-theme="dark"]{
+  --bg:#07141E;
+  --surface:#0D202D;
+  --surface-2:#132A38;
+  --surface-3:#1C3845;
+  --text:#EAF4F5;
+  --muted:#A4B8C0;
+  --line:#29424D;
+  --primary:#22B8B0;
+  --primary-dark:#48C8C1;
+  --primary-soft:#153E43;
+  --green:#58D6B1;
+  --green-soft:#163B34;
+  --orange:#F0B56E;
+  --orange-soft:#453321;
+  --red:#FF8790;
+  --shadow:0 18px 50px rgba(0,0,0,.28);
+  color-scheme:dark;
+}
+/* Login: navy e teal do símbolo, com contraste preservado */
+.auth-brand-panel{
+  background:linear-gradient(145deg,#001830 0%,#00384A 58%,#009090 135%);
+}
+.auth-brand-copy .eyebrow{color:#8DE0D8}
+.auth-brand-copy h1 em{color:#64D5CD}
+.auth-brand-copy p{color:#D0E6E8}
+.auth-panel-footer{color:#D0E6E8}
+.orb-one{border-color:#8DE0D822;box-shadow:0 0 0 55px #8DE0D80A,0 0 0 110px #8DE0D806}
+.orb-two{background:radial-gradient(circle,#0090902b,transparent 70%)}
+/* Ações, estados ativos e foco seguem o teal da marca */
+.primary-button,.small-button.primary{
+  background:var(--primary);
+  border-color:var(--primary);
+  color:#fff;
+}
+.primary-button:hover,.small-button.primary:hover{
+  background:var(--primary-dark);
+  border-color:var(--primary-dark);
+  color:#fff;
+}
+.nav-item.active{
+  background:var(--primary-soft);
+  color:var(--primary);
+}
+.nav-item.active .nav-icon{color:var(--primary)}
+.stat-icon,.quick-card span,.ed-icon{
+  background:var(--primary-soft);
+  color:var(--primary);
+}
+.text-button,.link-button{color:var(--primary)}
+.search-box:focus-within{border-color:var(--primary)}
+.avatar-blue{background:#DDF2F0;color:#006E70}
+.avatar-violet{background:#E6EFF2;color:#174D63}
+[data-theme="dark"] .avatar-blue{background:#16434A;color:#8CE0D8}
+[data-theme="dark"] .avatar-violet{background:#203B4A;color:#B7D4DB}
+.ed-donut{
+  background:conic-gradient(var(--green) 0 var(--ed-active),#C8873A var(--ed-active) var(--ed-pending),#82939A var(--ed-pending) 100%);
+}
+.ed-dot.active{background:var(--green)}
+.ed-dot.pending{background:#C8873A}
+.ed-bar-track span{border-radius:999px}
+::selection{background:#00909033;color:var(--text)}
+@media(prefers-reduced-motion:reduce){
+  .auth-brand-panel,.primary-button,.small-button,.nav-item{transition:none!important}
+}
