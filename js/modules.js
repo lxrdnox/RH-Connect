@@ -67,6 +67,7 @@
     return head("Relatórios e indicadores","Resumo operacional dos dados disponíveis no ambiente de apresentação.")+banner+'<div class="rhm-summary-grid"><article class="rhm-summary"><span>Colaboradores cadastrados</span><b>'+employees.length+'</b><small>Diretório atual</small></article><article class="rhm-summary"><span>Solicitações abertas</span><b>'+requests.filter(x=>x.status!=="Concluída").length+'</b><small>Chamados em atendimento</small></article><article class="rhm-summary"><span>Holerites registrados</span><b>'+hol.length+'</b><small>Demonstrativos ilustrativos</small></article><article class="rhm-summary"><span>Benefícios lançados</span><b>'+ben.length+'</b><small>Registros de vale alimentação</small></article></div>'+panel("Visão geral","Indicadores calculados a partir dos dados locais.",'<div class="rhm-report-row"><span>Comunicados publicados</span><b>'+notices.length+'</b></div><div class="rhm-report-row"><span>Horários de acolhimento</span><b>'+(data.agenda||[]).length+'</b></div><div class="rhm-report-row"><span>Registros de ponto</span><b>'+(data.ponto||[]).length+'</b></div>');
   }
   function render(id,user,employees,data){
+    window.RHAppRole=user.role.toUpperCase();
     const rows=data||{};
     if(id==="holerites")return holerites(user,rows.holerites||[],employees);
     if(id==="beneficios")return benefits(user,rows.beneficios||[]);
