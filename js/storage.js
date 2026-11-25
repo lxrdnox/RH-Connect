@@ -125,6 +125,7 @@
       requireAdmin();
       write("employees",(await this.load()).filter(r=>r.email.toLowerCase()!==String(email).toLowerCase()));
     },
+    readNow(name) { return read(name); },
     async read(name) { return read(name); },
     async write(name,rows) { requireHr(); return write(name,rows); },
     async create(name,record) {
