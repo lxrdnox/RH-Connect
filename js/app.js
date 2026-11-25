@@ -198,6 +198,7 @@
   $("#global-search").addEventListener("keydown",e=>{if(e.key==="Enter"){const q=e.target.value.trim().toLowerCase();if(!q)return;const match=Object.entries(modules).find(([id,m])=>permissions[currentUser.role].includes(id)&&m[1].toLowerCase().includes(q));if(match)navigate(match[0]);else if("painel dashboard".includes(q))navigate("dashboard");else toast("Nenhum módulo encontrado para esta busca.","error")}});
   $("#logout").addEventListener("click",async()=>{try{await window.RHStore.logout();closeModal();$("#login-password").value="";$("#global-search").value="";setMenu(false);showAuth();}catch(e){toast("Não foi possível encerrar a sessão.","error")}});
   $(".password-toggle").addEventListener("click",()=>{const p=$("#login-password");p.type=p.type==="password"?"text":"password";$(".password-toggle").setAttribute("aria-label",p.type==="password"?"Mostrar senha":"Ocultar senha");$(".password-toggle").setAttribute("aria-pressed",String(p.type==="text"));$(".password-toggle").innerHTML=window.RHDesign.icon(p.type==="text"?"eyeoff":"eye");});
+  $("[data-presentation]").forEach(b=>b.addEventListener("click",()=>{$("#login-email").value=b.dataset.presentation+"@rhconnect.com";$("#login-password").value="123456";login($("#login-email").value,$("#login-password").value)}));
   initTheme();
   localStorage.removeItem("rh-demo-role");
   if(!window.RHStore.enabled){$("#login-form button[type=submit]").disabled=true;$("#forgot-link").disabled=true;$("#auth-subtitle").textContent="Portal em configuração. O acesso será liberado pela administração."}
