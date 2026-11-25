@@ -1,0 +1,19 @@
+/* Motion Experience V4 — progressive enhancement */
+.page-content{animation:none}
+.rc-skeleton{margin-bottom:18px;padding:16px;border:1px solid var(--line);border-radius:var(--rc-radius-md);background:var(--surface)}
+.rc-skeleton-label{display:block;font-size:13px;color:var(--muted);margin-bottom:14px}
+.rc-skeleton-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.rc-skeleton-card{display:grid;gap:10px;padding:14px;border-radius:12px;background:var(--surface-2);min-width:0}
+.rc-skeleton-card i{display:block;height:12px;border-radius:7px;background:var(--surface-3);animation:rc-pulse 1.25s ease-in-out infinite alternate}
+.rc-skeleton-card i:nth-child(2){height:26px;width:65%}.rc-skeleton-card i:nth-child(3){width:85%}
+@keyframes rc-pulse{from{opacity:.45}to{opacity:1}}
+.toast{align-items:center;pointer-events:auto}
+.rc-toast-close{border:0;background:transparent;color:var(--muted);width:36px;height:36px;display:grid;place-items:center;border-radius:9px;flex:none}
+.rc-toast-close:hover{background:var(--surface-2);color:var(--text)}
+.toast>span:nth-child(2){flex:1;min-width:0}
+.ed-metric,.ed-service{transition:border-color 180ms ease,box-shadow 180ms ease,transform 180ms ease}
+@media(hover:hover) and (pointer:fine){.ed-metric:hover{border-color:color-mix(in srgb,var(--primary) 35%,var(--line));box-shadow:var(--rc-elevation)}.ed-service:hover{transform:translateX(2px)}}
+.ed-service:active,.small-button:active,.demo-account:active{transform:scale(.985)}
+@media(max-width:960px){.rc-skeleton-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:360px){.rc-skeleton-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.rc-skeleton-card i{animation:none}.ed-service:active,.small-button:active,.demo-account:active{transform:none}}
