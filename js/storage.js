@@ -86,6 +86,7 @@
     enabled:true,
     demoMode:true,
     demoEmployees,
+    demoAccounts:accounts.map(profile),
     async login(email,password,remember=false) {
       const normalized=String(email||"").trim().toLowerCase();
       const account=accounts.find(a=>a.email===normalized&&a.password===password);
