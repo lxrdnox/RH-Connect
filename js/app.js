@@ -1,7 +1,7 @@
 (() => {
   const $ = (s, root=document) => root.querySelector(s);
   const $$ = (s, root=document) => [...root.querySelectorAll(s)];
-  const data = {employees:[],activities:[],announcements:[]};
+  const data = {employees:[],activities:[],announcements:[],holerites:[],beneficios:[],ponto:[],solicitacoes:[],agenda:[],comunicados:[]};
   let currentUser = null;
   let activeModule = "dashboard";
   let dashboardDepartment = "";
@@ -30,7 +30,7 @@
   const permissions = {
     colaborador:["dashboard","holerites","beneficios","ponto","solicitacoes","agenda","comunicados"],
     rh:["dashboard","holerites","beneficios","ponto","solicitacoes","agenda","comunicados","funcionarios"],
-    admin:Object.keys(modules).filter(id=>id!=="usuarios").concat(["dashboard"])
+    admin:Object.keys(modules).concat(["dashboard"])
   };
 
   function toast(message,type="success"){
@@ -74,30 +74,27 @@
   function stat(label,value,foot,icon,positive=true){
     return `<article class="stat-card"><div class="stat-top"><span>${label}</span><span class="stat-icon">${icon}</span></div><div class="stat-value">${value}</div><div class="stat-foot"><span class="${positive?"positive":""}">${foot}</span></div></article>`;
   }
-  function activityList(){
-    return data.activities.map(a=>`<div class="activity-item"><div class="activity-icon">${a.icon}</div><div class="activity-copy"><b>${a.title}</b><p>${a.desc}</p></div><span class="activity-time">${a.time}</span></div>`).join("");
+  function activityList(){ return data.activities.map(a=>'<div class="activity-item"><div class="activity-icon">'+esc(a.icon)+'</div><div class="activity-copy"><b>'+esc(a.title)+'</b><p>'+esc(a.desc)+'</p></div><span class="activity-time">'+esc(a.time)+'</span></div>').join("") || '<p class="ed-empty">As atualizações aparecerão aqui.</p>'; 
   }
-  function announcements(){
-    return data.announcements.map(a=>`<div class="announcement"><span class="announcement-mark"></span><div><b>${a.title}</b><p>${a.desc}</p><span class="eyebrow">${a.tag}</span></div></div>`).join("");
+  function announcements(){ return data.announcements.slice(0,3).map(a=>'<div class="announcement"><span class="announcement-mark"></span><div><b>'+esc(a.title)+'</b><p>'+esc(a.body)+'</p><span class="eyebrow">'+esc(a.category)+'</span></div></div>').join("") || '<p class="ed-empty">Nenhum comunicado publicado.</p>'; 
   }
   function dashboard(){
     const admin=currentUser.role!=="colaborador";
     const title=currentUser.role==="colaborador"?"Olá, "+currentUser.name.split(" ")[0]+"!":"Olá, "+currentUser.name.split(" ")[0]+".";
     return `${`<div class="welcome-card"><div class="welcome-copy"><span class="eyebrow">SEU ESPAÇO, SUAS CONEXÕES</span><h2>${esc(title)}</h2><p>Que bom ter você por aqui. Veja o que está acontecendo hoje.</p></div><div class="welcome-date"><strong>${new Intl.DateTimeFormat("pt-BR",{weekday:"long",day:"2-digit",month:"long"}).format(new Date())}</strong>Um ótimo dia para fazer acontecer ✨</div></div>`}
-      ${admin?window.RHEnterprise.management(employees,dashboardDepartment):window.RHEnterprise.employee()}
+      ${admin?window.RHEnterprise.management(employees,dashboardDepartment):window.RHEnterprise.employee(data,currentUser.email)}
       <div class="grid dashboard-columns"><div>
-        <section class="panel"><div class="panel-header"><div><h3>Atividade recente</h3><p>As últimas atualizações do seu espaço</p></div><button class="link-button" data-module="comunicados">Ver tudo →</button></div><div class="activity-list"><p class="ed-empty">Nenhuma atividade registrada.</p></div></section>
+        <section class="panel"><div class="panel-header"><div><h3>Atividade recente</h3><p>As últimas atualizações do seu espaço</p></div><button class="link-button" data-module="comunicados">Ver tudo →</button></div><div class="activity-list">${activityList()}</div></section>
         <section class="panel"><div class="panel-header"><div><h3>Acesso rápido</h3><p>Encontre o que você precisa em poucos cliques</p></div></div><div class="grid quick-grid">${[["holerites","▤","Meus holerites","Documentos mensais"],["beneficios","◇","Benefícios","Informações do mês"],["ponto","◷","Ponto web","Minha jornada"],["solicitacoes","✉","Solicitações","Fale com o RH"]].map(x=>`<button class="quick-card" data-module="${x[0]}"><span>${x[1]}</span><b>${x[2]}</b><small>${x[3]}</small></button>`).join("")}</div></section>
-      </div><div><section class="panel"><div class="panel-header"><div><h3>Mural de comunicados</h3><p>Informações importantes para você</p></div><button class="link-button" data-module="comunicados">Abrir mural →</button></div><p class="ed-empty">Nenhum comunicado publicado.</p></section>
+      </div><div><section class="panel"><div class="panel-header"><div><h3>Mural de comunicados</h3><p>Informações importantes para você</p></div><button class="link-button" data-module="comunicados">Abrir mural →</button></div><div class="rhm-dashboard-news">${announcements()}</div></section>
       <section class="panel"><div class="panel-header"><div><h3>Seu espaço de bem-estar</h3><p>Cuidar de pessoas também é prioridade</p></div></div><div class="activity-item"><div class="activity-icon">🌱</div><div class="activity-copy"><b>Agenda psicológica</b><p>Consulte os horários disponíveis e reserve um momento para você.</p><button class="link-button" data-module="agenda">Conhecer agenda →</button></div></div></section></div></div>`;
   }
   function modulePage(id){
     const [icon,title,desc]=modules[id];
-    const action=(id==="funcionarios"||id==="usuarios")?`<button class="small-button primary" data-action="new-employee">＋ Novo funcionário</button>`:"";
-    if(id==="funcionarios"||id==="usuarios") return heading(title,desc,action)+window.RHPeople.render(employees,data.employees,currentUser.role);
-    if(id==="relatorios")return heading(title,desc)+window.RHEnterprise.management(employees,dashboardDepartment);
-    const empty={holerites:"Nenhum holerite disponibilizado.",beneficios:"Nenhum benefício cadastrado.",ponto:"Nenhum registro de jornada disponível.",solicitacoes:"O canal de solicitações ainda não foi configurado.",agenda:"Nenhum horário disponibilizado.",comunicados:"Nenhum comunicado publicado."};
-    return heading(title,desc)+'<section class="panel"><div class="empty-state"><div class="empty-icon">'+window.RHDesign.icon(icon)+'</div><b>'+empty[id]+'</b><p>As informações serão disponibilizadas pela equipe responsável após a configuração do serviço.</p></div></section>';
+    const action=id==="funcionarios"?'<button class="small-button primary" data-action="new-employee">＋ Novo funcionário</button>':'';
+    if(id==="funcionarios") return heading(title,desc,action)+window.RHPeople.render(employees,data.employees,currentUser.role);
+    if(["holerites","beneficios","ponto","solicitacoes","agenda","comunicados","usuarios","relatorios"].includes(id)) return window.RHModules.render(id,currentUser,employees,data);
+    return heading(title,desc)+'<section class="panel"><div class="empty-state"><b>Área em preparação</b></div></section>';
   }
   function employeeRows(list=employees){
     return list.map((e,i)=>`<tr><td><div class="person-cell"><span class="avatar avatar-${["blue","violet","green","orange"][i%4]}">${esc(e.initials||initials(e.name))}</span><span><b>${esc(e.name)}</b><small>${esc(e.email)}</small></span></div></td><td>${esc(e.department)}</td><td>${esc(e.role)}</td><td><span class="status-pill ${e.status==="Pendente"?"pending":e.status==="Inativo"?"inactive":""}">${esc(e.status)}</span></td><td><button class="link-button" data-action="view-employee" data-email="${esc(e.email)}">Ver perfil</button></td></tr>`).join("");
@@ -112,7 +109,8 @@
     const labels={dashboard:"Meu painel",perfil:"Meu perfil",...Object.fromEntries(Object.entries(modules).map(([k,v])=>[k,v[1]]))};
     $("#breadcrumb-current").textContent=labels[id]||"Meu painel";
     $("#page-content").innerHTML=id==="dashboard"?dashboard():id==="perfil"?profilePage():modulePage(id);
-    if(id==="funcionarios"||id==="usuarios")window.RHPeople.bind($("#page-content"),employees,data.employees,currentUser.role);
+    if(id==="funcionarios")window.RHPeople.bind($("#page-content"),employees,data.employees,currentUser.role);
+    if(["holerites","beneficios","ponto","solicitacoes","agenda","comunicados","usuarios","relatorios"].includes(id))window.RHModules.bind($("#page-content"),currentUser,employees);
     if(id==="dashboard"||id==="relatorios")window.RHEnterprise.bind($("#page-content"),employees,value=>{dashboardDepartment=value});
     window.RHMotion.enter($("#page-content"));
     if(id==="dashboard")window.RHMotion.syncFilter($("#page-content"));
@@ -164,9 +162,17 @@
     });
   }
   async function enterAccount(account){
-    const rows=["admin","rh"].includes(account.role)?await window.RHStore.load():[];
-    currentUser=account;employees=rows;showApp();
+    currentUser=account;
+    employees=["admin","rh"].includes(account.role)?await window.RHStore.load():window.RHStore.demoEmployees;
+    refreshDemoData();
+    showApp();
   }
+  function refreshDemoData(){
+    ["holerites","beneficios","ponto","solicitacoes","agenda","comunicados"].forEach(key=>{data[key]=window.RHStore.readNow(key)});
+    data.announcements=data.comunicados;
+    data.activities=[...data.solicitacoes.slice(0,2).map(x=>({icon:"✉",title:"Solicitação: "+x.subject,desc:x.status+" · "+x.employeeName,time:x.createdAt})),...data.comunicados.slice(0,2).map(x=>({icon:"▧",title:x.title,desc:x.category,time:x.date}))].sort((a,b)=>String(b.time).localeCompare(String(a.time))).slice(0,4);
+  }
+  window.addEventListener("rhmodules:refresh",()=>{if(!currentUser)return;refreshDemoData();navigate(activeModule)});
   async function login(email,password){
     const button=$("#login-form button[type=submit]");if(button.disabled)return;button.disabled=true;
     try{const account=await window.RHStore.login(email,password,$("#remember-login").checked);await enterAccount(account);$("#login-password").value="";toast("Bem-vindo(a)!")}
