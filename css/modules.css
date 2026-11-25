@@ -1,0 +1,61 @@
+/* RH CONNECT — módulos operacionais do ambiente de apresentação */
+.rhm-demo-note{display:flex;align-items:center;gap:10px;padding:12px 15px;margin:0 0 18px;border:1px solid var(--line);border-radius:14px;background:var(--primary-soft);color:var(--text);font-size:12px;line-height:1.5}
+.rhm-demo-note>span:first-child{display:grid;place-items:center;width:23px;height:23px;border-radius:50%;background:var(--primary);color:#fff;font-weight:800;flex:none}
+.rhm-demo-note b{font-weight:800}
+.rhm-panel{margin-bottom:20px}
+.rhm-panel>.panel-header{margin-bottom:16px}
+.rhm-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:0 0 20px}
+.rhm-summary{display:grid;gap:6px;padding:20px;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:0 4px 16px rgba(25,42,75,.04)}
+.rhm-summary span{font-size:13px;color:var(--muted);font-weight:600}
+.rhm-summary b{font:800 clamp(22px,3vw,30px)/1.25 Manrope,sans-serif;letter-spacing:-.04em;color:var(--text);overflow-wrap:anywhere}
+.rhm-summary small,.rhm-person{font-size:12px;color:var(--muted)}
+.rhm-empty{display:grid;justify-items:center;text-align:center;gap:8px;padding:35px 18px;color:var(--muted)}
+.rhm-empty>span{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:var(--primary-soft);color:var(--primary);font-size:22px}
+.rhm-empty b{font-size:15px;color:var(--text)}
+.rhm-empty p{margin:0;max-width:460px;font-size:13px}
+.rhm-benefit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.rhm-benefit-card{display:grid;gap:9px;min-width:0;padding:19px;border:1px solid var(--line);border-radius:17px;background:var(--surface-2)}
+.rhm-benefit-icon{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:var(--primary-soft);color:var(--primary);font-size:24px}
+.rhm-benefit-card h3{margin:0;font-size:16px}
+.rhm-benefit-card>strong{font:800 27px Manrope,sans-serif;letter-spacing:-.04em;color:var(--primary)}
+.rhm-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.rhm-row small{font-size:12px;color:var(--muted)}
+.rhm-clock{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;padding:22px;margin:0 0 18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(125deg,var(--surface),var(--primary-soft))}
+.rhm-clock>div{display:grid;gap:5px}
+.rhm-clock strong{font:800 34px Manrope,sans-serif;letter-spacing:-.04em;color:var(--text)}
+.rhm-clock small,.rhm-clock p{margin:0;color:var(--muted);font-size:13px}
+.rhm-clock .small-button{width:max-content}
+.rhm-request-list{display:grid;gap:12px}
+.rhm-request{padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--surface-2)}
+.rhm-request-top,.rhm-news-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.rhm-request h3,.rhm-news h3{margin:10px 0 6px;font-size:16px}
+.rhm-request>p,.rhm-news>p{margin:0 0 14px;color:var(--muted);font-size:13px;line-height:1.65;white-space:pre-line}
+.rhm-status{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;font-weight:700}
+.rhm-status select{min-height:36px;padding:6px 26px 6px 9px;width:auto}
+.rhm-agenda-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.rhm-slot{display:flex;align-items:center;gap:13px;min-width:0;padding:15px;border:1px solid var(--line);border-radius:16px;background:var(--surface-2)}
+.rhm-slot-date{display:grid;place-items:center;align-content:center;width:53px;height:59px;flex:none;border-radius:13px;background:var(--primary-soft);color:var(--primary)}
+.rhm-slot-date b{font:800 22px Manrope,sans-serif}
+.rhm-slot-date small{font-size:11px;text-transform:uppercase}
+.rhm-slot-info{display:grid;gap:4px;flex:1;min-width:0}
+.rhm-slot-info>b{font-size:13px;overflow-wrap:anywhere}
+.rhm-slot-info p,.rhm-slot-info small{margin:0;color:var(--muted);font-size:12px}
+.rhm-slot-action{flex:none}
+.rhm-slot-action .small-button{padding:8px 10px;min-height:36px;font-size:12px}
+.rhm-news-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.rhm-news{padding:19px;border:1px solid var(--line);border-radius:17px;background:var(--surface-2);min-width:0}
+.rhm-news h3{font-size:17px;line-height:1.35}
+.rhm-news>p{min-height:65px}
+.rhm-report-row{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}
+.rhm-report-row:last-child{border-bottom:0}
+.rhm-report-row span{color:var(--muted)}
+.rhm-report-row b{font-variant-numeric:tabular-nums}
+.rhm-disclaimer{margin:14px 0 0;color:var(--muted);font-size:12px;line-height:1.6}
+.rhm-dashboard-news{display:grid;gap:14px}
+.rhm-dashboard-news .announcement{padding:10px 0;border-bottom:1px solid var(--line)}
+.rhm-dashboard-news .announcement:last-child{border-bottom:0}
+#rhm-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+#rhm-form .field-label{min-width:0}
+#rhm-form textarea{resize:vertical}
+@media(max-width:900px){.rhm-agenda-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.rhm-summary-grid,.rhm-benefit-grid,.rhm-news-grid{grid-template-columns:1fr}.rhm-summary{padding:16px}.rhm-benefit-card,.rhm-news{padding:16px}.rhm-clock{align-items:flex-start;padding:17px}.rhm-clock strong{font-size:29px}.rhm-slot{flex-wrap:wrap}.rhm-slot-info{flex-basis:calc(100% - 70px)}.rhm-slot-action{margin-left:66px}#rhm-form{grid-template-columns:1fr}.rhm-request{padding:15px}.rhm-status{width:100%;justify-content:space-between}}
