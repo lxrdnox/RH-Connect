@@ -82,7 +82,7 @@
     const admin=currentUser.role!=="colaborador";
     const title=currentUser.role==="colaborador"?"Olá, "+currentUser.name.split(" ")[0]+"!":"Olá, "+currentUser.name.split(" ")[0]+".";
     return `${`<div class="welcome-card"><div class="welcome-copy"><span class="eyebrow">SEU ESPAÇO, SUAS CONEXÕES</span><h2>${esc(title)}</h2><p>Que bom ter você por aqui. Veja o que está acontecendo hoje.</p></div><div class="welcome-date"><strong>${new Intl.DateTimeFormat("pt-BR",{weekday:"long",day:"2-digit",month:"long"}).format(new Date())}</strong>Um ótimo dia para fazer acontecer ✨</div></div>`}
-      <div class="rhm-demo-note"><span>i</span><span><b>Ambiente de apresentação</b> · Dados fictícios e interações demonstrativas salvos neste navegador.</span></div>
+
       ${admin?window.RHEnterprise.management(employees,dashboardDepartment):window.RHEnterprise.employee(data,currentUser.email)}
       <div class="grid dashboard-columns"><div>
         <section class="panel"><div class="panel-header"><div><h3>Atividade recente</h3><p>As últimas atualizações do seu espaço</p></div><button class="link-button" data-module="comunicados">Ver tudo →</button></div><div class="activity-list">${activityList()}</div></section>
