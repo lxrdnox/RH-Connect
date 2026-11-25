@@ -5,7 +5,7 @@
   const format = n => new Intl.NumberFormat('pt-BR').format(n);
   const percent = (n,total) => total ? Math.round(n/total*100) : 0;
   const icon = name => window.RHDesign.icon(name);
-  const colors = ['#345cdd','#139c83','#9369cf','#d28b28','#64748b'];
+  const colors = ['#008F8C','#174D63','#69AAA5','#C8873A','#718894'];
   function summarize(rows,department=''){
     const filtered = rows.filter(row => !department || row.department===department);
     const groups = new Map();
