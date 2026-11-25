@@ -130,15 +130,22 @@
     async read(name) { return read(name); },
     async write(name,rows) { requireHr(); return write(name,rows); },
     async create(name,record) {
-      requireHr();
+      if(name==="solicitacoes"&&user?.role==="colaborador"){
+        if(record.employeeEmail!==user.email) throw Error("Você só pode abrir solicitações em seu nome.");
+      } else requireHr();
       const rows=read(name);
       const item={id:record.id||name.slice(0,3)+"-"+Date.now(),...record};
       rows.unshift(item);write(name,rows);return item;
     },
     async update(name,id,changes) {
-      requireHr();
       const rows=read(name),index=rows.findIndex(r=>r.id===id);
       if(index<0) throw Error("Registro não encontrado");
+      if(user?.role==="colaborador"&&name==="agenda"){
+        const current=rows[index];
+        const booking=changes.status==="Reservado"&&changes.employeeEmail===user.email&&current.status==="Disponível";
+        const cancellation=current.employeeEmail===user.email&&changes.status==="Disponível"&&changes.employeeEmail==="";
+        if(!booking&&!cancellation) throw Error("Você só pode gerenciar suas próprias reservas.");
+      } else requireHr();
       rows[index]={...rows[index],...changes};write(name,rows);return rows[index];
     },
     async removeRecord(name,id) {
